@@ -9,7 +9,7 @@ function printHelpText
   echo ""
   echo "application Options:"
   echo "  -p, --default-clone-path= Default path to git clone into (default: ./)"
-  echo "  -f, --gitfile= File path to the Gitfile (default: ./gitfile)"
+  echo "  -f, --gitfile= File path to the Gitfile (default: ./.gitfile)"
   echo ""
   echo "Help Options:"
   echo "  -h, --help            Show this help message and exit"

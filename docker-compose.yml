@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  test:
+    image: bash:5
+    working_dir: /root/workspace/
+    volumes:
+      - ~/.ssh/:/root/.ssh/
+      - ./:/root/workspace/github/Bobonium/gitfile/
+      - ./gitfile.sh:/usr/local/bin/gitfile
+    command:
+      - bash
+      - -c
+      - "apk update > /dev/null 2>&1 && apk add git openssh-client > /dev/null 2>&1 && gitfile -f ./github/Bobonium/gitfile/.gitfile"
