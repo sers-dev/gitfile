@@ -61,4 +61,5 @@ if [ ! -f "${YAML_FILE}" ]; then
 fi
 
 cd "$(dirname "${YAML_FILE}")"
+YAML_FILE="./$(echo ${YAML_FILE} | rev | cut -d "/" -f 1 | rev)"
 parseYaml ${YAML_FILE} ${DEFAULT_GIT_CLONE_PATH}
