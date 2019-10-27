@@ -25,11 +25,11 @@ function cloneRepo
 
 function parseYaml
 {
-  YAML_FILE=${1}
+  YAML_FILE_CONTENT=$(cat ${1} | egrep -v "^\s*#")
   DEFAULT_GIT_CLONE_PATH=${2}
-  LAST_LINE_NUMBER="$(wc -l ${YAML_FILE} | awk '{print $1}')"
-  mapfile -t LINE_NUMBERS < <(cat -n ${YAML_FILE} | egrep -v "source:|version:|path:" | egrep "[0-9]{1,10}.*:\s*$" | awk '{print $1}')
-  mapfile -t DIR_NAMES  < <(cat -n ${YAML_FILE} | egrep -v "source:|version:|path:" | egrep "[0-9]{1,10}.*:\s*$" | awk '{print $2}')
+  LAST_LINE_NUMBER="$(echo "${YAML_FILE_CONTENT}" | wc -l | awk '{print $1}')"
+  mapfile -t LINE_NUMBERS < <(echo "${YAML_FILE_CONTENT}" | cat -n | egrep -v "source:|version:|path:" | egrep "[0-9]{1,10}.*:\s*$" | awk '{print $1}')
+  mapfile -t DIR_NAMES  < <(echo "${YAML_FILE_CONTENT}" | cat -n | egrep -v "source:|version:|path:" | egrep "[0-9]{1,10}.*:\s*$" | awk '{print $2}')
   for (( i=0; i < ${#LINE_NUMBERS[@]}; ++i ))
   do
     FROM=$(expr ${LINE_NUMBERS[$i]} + 1)
@@ -37,9 +37,9 @@ function parseYaml
     if [ "$i" -ne "$(expr ${#LINE_NUMBERS[@]} - 1 )" ]; then
       TO=$(expr ${LINE_NUMBERS[$i + 1]} - 1)
     fi
-    SOURCE=$(sed -n "${FROM},${TO}p" ${YAML_FILE} | grep "source:" | awk '{print $2}' | cut -d'"' -f2)
-    VERSION=$(sed -n "${FROM},${TO}p" ${YAML_FILE} | grep "version:" | awk '{print $2}' | cut -d'"' -f2 || echo "master")
-    GIT_CLONE_PATH=$(sed -n "${FROM},${TO}p" ${YAML_FILE} | grep "path:" | awk '{print $2}' | cut -d'"' -f2 || echo "${DEFAULT_GIT_CLONE_PATH}")
+    SOURCE=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "source:" | awk '{print $2}' | cut -d'"' -f2)
+    VERSION=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "version:" | awk '{print $2}' | cut -d'"' -f2 || echo "master")
+    GIT_CLONE_PATH=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "path:" | awk '{print $2}' | cut -d'"' -f2 || echo "${DEFAULT_GIT_CLONE_PATH}")
     cloneRepo ${SOURCE} ${VERSION} ${GIT_CLONE_PATH%/}/${DIR_NAMES[$i]%:}
   done
 }
