@@ -1,0 +1,4 @@
+gitfile:
+    source: "https://github.com/Bobonium/gitfile.git"
+    path: ~/workspace/github/bobonium/
+    version: master
