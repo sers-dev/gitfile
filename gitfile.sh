@@ -7,6 +7,7 @@ function cloneRepo
   SOURCE=${1}
   VERSION=${2}
   GIT_CLONE_PATH=${3//\~/$HOME}
+  echo "${SOURCE}"
   if [ ! -d "${GIT_CLONE_PATH}" ]; then
     git clone "${SOURCE}" ${GIT_CLONE_PATH} -q
   fi
