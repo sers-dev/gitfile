@@ -92,11 +92,11 @@ gitfile:
     #relative path values are always relative to the path of the .gitfile
     path: ~/workspace/github/Bobonium/
     #optional: version to checkout (defaults to master)
-    #tags, branch names and commit hases are all valid values
+    #tags, branch names and commit hashes are all valid values
     #if you can run `git checkout $VERSION` it's valid
     version: master
 ```
 
 #### Release Cycle:
 
-Master branch will always be the current release; if it's good enough to merge, it's good enough to be released
+Master branch will always be the current release; if it's good enough to be merged, it's good enough to be released
