@@ -98,5 +98,4 @@ gitfile:
 ```
 
 #### Release Cycle:
-
-Master branch will always be the current release; if it's good enough to be merged, it's good enough to be released
+`gitfile.sh` content changes on master will always trigger a new release; if it's good enough to be merged, it's good enough to be released.
