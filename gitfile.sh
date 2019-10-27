@@ -2,6 +2,21 @@
 
 set -euo pipefail
 
+function printHelpText
+{
+  echo "Usage:"
+  echo "  ${0} [OPTIONS]"
+  echo ""
+  echo "application Options:"
+  echo "  -p, --default-clone-path= Default path to git clone into (default: ./)"
+  echo "  -f, --gitfile= File path to the Gitfile (default: ./gitfile)"
+  echo ""
+  echo "Help Options:"
+  echo "  -h, --help            Show this help message and exit"
+  echo ""
+  exit 0
+}
+
 function cloneRepo
 {
   SOURCE=${1}
@@ -46,15 +61,23 @@ function parseYaml
 }
 
 DEFAULT_GIT_CLONE_PATH="."
-if [ "$#" -eq 1 ]; then
-  DEFAULT_GIT_CLONE_PATH=${1%/}
-fi
-
-
 YAML_FILE="./.gitfile"
-if [ "$#" -eq 2 ]; then
-  YAML_FILE="${2}"
-fi
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -p) DEFAULT_GIT_CLONE_PATH="${2%/}"; shift 2;;
+    -f) YAML_FILE="$2"; shift 2;;
+
+    --default-clone-path=*) DEFAULT_GIT_CLONE_PATH="${1#*=}"; shift 1;;
+    --gitfile=*) YAML_FILE="${1#*=}"; shift 1;;
+    --default-clone-path|--gitfile) echo "$1 requires an argument" >&2; exit 1;;
+
+    -h) printHelpText;;
+    --help) printHelpText;;
+
+    -*) echo "unknown option: $1" >&2; exit 1;;
+    *) handle_argument "$1"; shift 1;;
+  esac
+done
 
 if [ ! -f "${YAML_FILE}" ]; then
   echo "[ERROR] '${YAML_FILE}' does not exist"
