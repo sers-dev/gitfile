@@ -1,6 +1,10 @@
 ## [Unreleased] - TBD
 - no changes
 
+## [1.1.0] - 2020-04-23
+- added Dockerfile
+
+
 ## [1.0.0] - 2019-10-27
 - initial release
 - MIT License
