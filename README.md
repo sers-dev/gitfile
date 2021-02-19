@@ -25,7 +25,7 @@ Main reasons for the rewrite were:
 
  
 ## Features
- - doesn't delete your directories (looking at you `terrafile` tools -.-*)
+ - doesn't delete your existing directories
  - clones repository only if it hasn't been cloned already
    - incremental changes are retrieved with fetch/checkout/pull
  - fetch/checkout/pull are only executed if there are no changes in the local repository
@@ -43,14 +43,14 @@ git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 ## Install
 
 ```shell script
-git clone https://github.com/Bobonium/gitfile.git
+git clone https://github.com/sers-dev/gitfile.git
 cd gitfile
 make install
 ```
 
 or alternatively:
 ```shell script
-curl -L https://raw.githubusercontent.com/Bobonium/gitfile/master/gitfile.sh > /usr/local/bin/gitfile
+curl -L https://raw.githubusercontent.com/sers-dev/gitfile/master/gitfile.sh > /usr/local/bin/gitfile
 ```
 
 #### dependencies:
@@ -65,7 +65,7 @@ curl -L https://raw.githubusercontent.com/Bobonium/gitfile/master/gitfile.sh > /
 
 ```shell script
 #quick-start
-cd ~/workspace/github/Bobonium/gitfile/
+cd ~/workspace/github/sers-dev/gitfile/
 gitfile
 ```
 
@@ -87,10 +87,10 @@ Feel free to create an Issue/Pull request if you find a problem with the parsing
 #required: repo will be cloned into dir with this name
 gitfile:
     #required: clone URL (can be either http(s) or ssh)
-    source: "https://github.com/Bobonium/gitfile.git"
+    source: "https://github.com/sers-dev/gitfile.git"
     #optional: path to clone the repository into (default taken from gitfile command)
     #relative path values are always relative to the path of the .gitfile
-    path: ~/workspace/github/Bobonium/
+    path: ~/workspace/github/sers-dev/
     #optional: version to checkout (defaults to master)
     #tags, branch names and commit hashes are all valid values
     #if you can run `git checkout $VERSION` it's valid

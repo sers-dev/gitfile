@@ -1,4 +1,4 @@
 gitfile:
-    source: "https://github.com/Bobonium/gitfile.git"
-    path: ~/workspace/github/Bobonium/
+    source: "https://github.com/sers-dev/gitfile.git"
+    path: ~/workspace/github/sers-dev/
     version: master

@@ -1,6 +1,10 @@
 ## [Unreleased] - TBD
 - no changes
 
+## [1.2.0] - 2021-02-19
+- moved repository into `sers-dev` organization
+- moved docker image to `quay.io`
+
 ## [1.1.0] - 2020-04-23
 - added Dockerfile
 
