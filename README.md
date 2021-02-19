@@ -48,6 +48,12 @@ cd gitfile
 make install
 ```
 
+in docker:
+```shell script
+# https://quay.io/repository/sers.dev/gitfile
+docker run quay.io/sers.dev/gitfile:latest
+```
+
 or alternatively:
 ```shell script
 curl -L https://raw.githubusercontent.com/sers-dev/gitfile/master/gitfile.sh > /usr/local/bin/gitfile
