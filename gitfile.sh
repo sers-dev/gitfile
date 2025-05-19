@@ -54,7 +54,7 @@ function parseYaml
       TO=$(expr ${LINE_NUMBERS[$i + 1]} - 1)
     fi
     SOURCE=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "source:" | awk '{print $2}' | cut -d'"' -f2)
-    VERSION=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "version:" | awk '{print $2}' | cut -d'"' -f2 || echo "master")
+    VERSION=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "version:" | awk '{print $2}' | cut -d'"' -f2 || echo "main")
     GIT_CLONE_PATH=$(echo "${YAML_FILE_CONTENT}" | sed -n "${FROM},${TO}p" | grep "path:" | awk '{print $2}' | cut -d'"' -f2 || echo "${DEFAULT_GIT_CLONE_PATH}")
     cloneRepo ${SOURCE} ${VERSION} ${GIT_CLONE_PATH%/}/${DIR_NAMES[$i]%:}
   done

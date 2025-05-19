@@ -56,7 +56,7 @@ docker run quay.io/sers.dev/gitfile:latest
 
 or alternatively:
 ```shell script
-curl -L https://raw.githubusercontent.com/sers-dev/gitfile/master/gitfile.sh > /usr/local/bin/gitfile
+curl -L https://raw.githubusercontent.com/sers-dev/gitfile/main/gitfile.sh > /usr/local/bin/gitfile
 ```
 
 #### dependencies:
@@ -97,11 +97,11 @@ gitfile:
     #optional: path to clone the repository into (default taken from gitfile command)
     #relative path values are always relative to the path of the .gitfile
     path: ~/workspace/github/sers-dev/
-    #optional: version to checkout (defaults to master)
+    #optional: version to checkout (defaults to main)
     #tags, branch names and commit hashes are all valid values
     #if you can run `git checkout $VERSION` it's valid
-    version: master
+    version: main
 ```
 
 #### Release Cycle:
-`gitfile.sh` content changes on master will always trigger a new release; if it's good enough to be merged, it's good enough to be released.
+`gitfile.sh` content changes on main will always trigger a new release; if it's good enough to be merged, it's good enough to be released.
