@@ -41,11 +41,11 @@ function cloneRepo
 
 function parseYaml
 {
-  YAML_FILE_CONTENT=$(cat ${1} | egrep -v "^\s*#")
+  YAML_FILE_CONTENT=$(cat ${1} | grep -E -v "^\s*#")
   DEFAULT_GIT_CLONE_PATH=${2}
   LAST_LINE_NUMBER="$(echo "${YAML_FILE_CONTENT}" | wc -l | awk '{print $1}')"
-  mapfile -t LINE_NUMBERS < <(echo "${YAML_FILE_CONTENT}" | cat -n | egrep -v "source:|version:|path:" | egrep "[0-9]{1,10}.*:\s*$" | awk '{print $1}')
-  mapfile -t DIR_NAMES  < <(echo "${YAML_FILE_CONTENT}" | cat -n | egrep -v "source:|version:|path:" | egrep "[0-9]{1,10}.*:\s*$" | awk '{print $2}')
+  mapfile -t LINE_NUMBERS < <(echo "${YAML_FILE_CONTENT}" | cat -n | grep -E -v "source:|version:|path:" | grep -E "[0-9]{1,10}.*:\s*$" | awk '{print $1}')
+  mapfile -t DIR_NAMES  < <(echo "${YAML_FILE_CONTENT}" | cat -n | grep -E -v "source:|version:|path:" | grep -E "[0-9]{1,10}.*:\s*$" | awk '{print $2}')
   for (( i=0; i < ${#LINE_NUMBERS[@]}; ++i ))
   do
     FROM=$(expr ${LINE_NUMBERS[$i]} + 1)
