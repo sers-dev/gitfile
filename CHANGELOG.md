@@ -1,6 +1,15 @@
 ## [Unreleased] - TBD
 - no changes
 
+## [1.4.0] - 2025-10-10
+- add pipeline to deploy to ghcr registry
+
+## [1.3.1] - 2025-05-19
+- switch from egrep to grep -E
+
+## [1.3.0] - 2025-05-19
+- switched default branch to main
+
 ## [1.2.0] - 2021-02-19
 - moved repository into `sers-dev` organization
 - moved docker image to `quay.io`
